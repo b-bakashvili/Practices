@@ -13,6 +13,10 @@ public class Book
     public string Author;
     public string Genre;
     public int PublishedYear;
+    public bool IsBorrowed;
+    public int? BorrowedByMemberId;
+    //public bool IsBorrowed { get; set; }
+    //public int? BorrowedByMemberId { get; set; }
 
     public void printInfo()
     {

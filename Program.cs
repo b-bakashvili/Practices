@@ -2,8 +2,8 @@
 
 MemberService.Initialize();
 
-int input = -1;
-while(input != 0)
+char input = '*';
+while(input != '0')
 {
     // Options:
     Console.WriteLine("1 - Register Member\n" +
@@ -16,21 +16,24 @@ while(input != 0)
                       "7 - Update Book\n" +
                       "8 - Delete Book\n\n" +
 
+                      "+ - Borrow Book\n\n" +
+                      "- - Return Book\n\n" +
+
                       "0 - Exit\n");
 
     Console.Write("Input: ");
-    input = Convert.ToInt32(Console.ReadLine());
+    input = Convert.ToChar(Console.ReadLine());
     Console.Write("\n\n");
 
     // Exit option:
-    if (input == 0)
+    if (input == '0')
     {
         Console.WriteLine("Exitted Program!");
         break;
     }
 
     // MemberService options:
-    else if (input == 1)
+    else if (input == '1')
     {
         Console.WriteLine("Enter member ID: ");
         int ID = Convert.ToInt32(Console.ReadLine());
@@ -54,22 +57,22 @@ while(input != 0)
         
         MemberService.AddMember(ID, firstName, lastName, age, email, personalNumber, createdOn);
     }
-    else if(input == 2)
+    else if(input == '2')
     {
         MemberService.GetAllMembers();
         Console.WriteLine('\n');
     }
-    else if(input == 3)
+    else if(input == '3')
     {
         MemberService.UpdateMember();
     }
-    else if(input == 4)
+    else if(input == '4')
     {
         MemberService.DeleteMember();
     }
 
     // BookService options:
-    else if(input == 5)
+    else if(input == '5')
     {
         Console.WriteLine("Enter member ID: ");
         int ID = Convert.ToInt32(Console.ReadLine());
@@ -88,18 +91,42 @@ while(input != 0)
 
         BookService.AddBook(ID, title, author, genre, publishedYear);
     }
-    else if(input == 6)
+    else if(input == '6')
     {
         BookService.GetAllBooks();
         Console.WriteLine('\n');
     }
-    else if(input == 7)
+    else if(input == '7')
     {
         BookService.UpdateBook();
     }
-    else if(input == 8)
+    else if(input == '8')
     {
         BookService.DeleteBook();
+    }
+    else if(input == '+')
+    {
+        int memberID, bookID;
+
+        Console.WriteLine("Enter member ID: ");
+        memberID = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter book ID: ");
+        bookID = Convert.ToInt32(Console.ReadLine());
+
+        LibraryService.BorrowBook(memberID, bookID);
+    }
+    else if (input == '-')
+    {
+        int memberID, bookID;
+
+        Console.WriteLine("Enter member ID: ");
+        memberID = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter book ID: ");
+        bookID = Convert.ToInt32(Console.ReadLine());
+
+        LibraryService.ReturnBook(bookID);
     }
     else
     {
